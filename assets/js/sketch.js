@@ -37,13 +37,34 @@ const blueprintSk = (p) => {
 
   p.draw = () => {
     p.clear();
-    angle += 0.04;
+    // --- 修正後：ガウス関数によるQRS波の近似と恒常性のベース ---
 
-    // Pulse Logic
-    layerStates[0] = Math.sin(angle) * 6;
-    //layerStates[0] = 0;
-    for (let i = 1; i < layerStates.length; i++) {
-      layerStates[i] = p.lerp(layerStates[i], layerStates[i - 1], 0.12);
+    // 1. 恒常性の基礎となるBPM（ゆくゆくはこれを動的に変化させます）
+    let bpm = 60; // 安静時の心拍数
+    let beatInterval = 60000 / bpm; // 1拍あたりのミリ秒数（60BPMなら1000ms）
+
+    // 現在の時間を 0.0 〜 1.0 のフェーズ（周期）に正規化
+    let t = p.millis() % beatInterval;
+    let phase = t / beatInterval;
+
+    // 2. 波形の合成（関数化して各レイヤーで極性を変えずに遅延させられるようにする）
+    const getHeartbeat = (p, phase) => {
+      const gauss = (x, a, mu, sigma) => a * Math.exp(-Math.pow(x - mu, 2) / (2 * Math.pow(sigma, 2)));
+      let qrs = gauss(phase, 1.8, 0.1, 0.05);
+      let tW = gauss(phase, 0.8, 0.6, 0.08);
+      return (qrs + tW) * 6;
+    };
+
+    // 3. 各レイヤーへの適用（位相をずらすことで、振幅を減衰させずに遅延させる）
+    for (let i = 0; i < layerStates.length; i++) {
+      // 各レイヤーごとに 0.1 ずつフェーズを遅らせる（10%ずれる）
+      let layerPhase = (phase - (i * 0.08) + 1.0) % 1.0;
+      let baseBeat = getHeartbeat(p, layerPhase);
+
+      // 部屋ごとの有機的な揺らぎ（ノイズ）
+      let individualNoise = (p.noise(i * 10, p.millis() * 0.0005) - 0.5) * 3.0;
+
+      layerStates[i] = baseBeat + individualNoise;
     }
 
     drawGrid(p);
@@ -287,7 +308,9 @@ function drawRoom(p, x, y, w, h, pulse, name, hoverScale) {
 }
 
 function drawDoor(p, x, y, size, baseAngle, pulse, dir = 1) {
-  let openAngle = p.map(pulse, -8, 8, p.radians(15), p.HALF_PI) * dir;
+  // Gaussian pulse + noise can peak around 10-12.
+  // We constrain the input and map to a max of 90 degrees (HALF_PI) to avoid "over-extended Pac-Man" feel.
+  let openAngle = p.map(p.constrain(pulse, 0, 10), 0, 10, p.radians(5), p.HALF_PI) * dir;
   p.stroke(0, 0, 0, 120);
   p.noFill();
   let start = baseAngle;
