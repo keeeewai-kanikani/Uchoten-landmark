@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-color: #fdfdfd;
+  --paper-color: #ffffff;
+  --grid-color: rgba(0, 100, 255, 0.05);
+  /* Blue-ish grid lines */
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --accent-soft: #666666;
+  --accent-vibrant: #2a52be;
+  /* Deep Cerulean / Drafting Blue */
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --max-width-site: 680px;
+  --transition-cubic-ease: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  /* Graph paper grid */
+  color: var(--text-primary);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#app-container {
+  width: 100%;
+  max-width: var(--max-width-site);
+  padding: 670px 24px 120px 24px;
+  /* Start below the fold to show blueprint */
+}
+
+a {
+  color: var(--accent-vibrant);
+  text-decoration: none;
+  transition: var(--transition-cubic-ease);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.intro-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 48px;
+}
+
+/* Full-screen Drafting Background */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: var(--paper-color);
+  overflow: hidden;
+  pointer-events: none;
+  /* Let clicks pass through to site content */
+}
+
+/* Full-screen Hand Animation Overlay (Z-Index 5) */
+#hand-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+/* Header */
+header {
+  margin-bottom: 80px;
+}
+
+.brand-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-vibrant);
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+/* Sections */
+section {
+  margin-bottom: 64px;
+}
+
+h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+}
+
+/* Project/Link Cards */
+.link-list {
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: var(--paper-color);
+  border: 1px solid var(--border-subtle);
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition-cubic-ease);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  background: var(--paper-color);
+  border-color: var(--accent-vibrant);
+  box-shadow: 4px 4px 0px rgba(42, 82, 190, 0.1);
+}
+
+.card-title {
+  font-weight: 500;
+  color: var(--text-primary);
+  display: block;
+}
+
+.card-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.arrow-icon {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* Minimal Footer */
+footer {
+  margin-top: 120px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-cubic-ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  #app-container {
+    padding: 670px 20px 120px 20px;
+  }
+}
+
+/* 3L(an)D(mar)K Logo */
+#ldk-landmark-logo {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 110;
+  background: #000000;
+  color: #ffffff;
+  width: 256px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  text-align: center;
+  padding: 4px;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.05em;
+  pointer-events: auto;
+}
+
+#ldk-landmark-logo .small-text {
+  font-size: 0.45em;
+  font-weight: 400;
+  vertical-align: middle;
+  margin: 0 -1px;
+}
+
+/* Visitor Counter - Storefront Sign Style */
+#visitor-counter-sign {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  background: #ffffff;
+  padding: 8px 16px;
+  border: 3px solid #000000;
+  /* Thick black "sign" border */
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  font-family: 'Outfit', sans-serif;
+  pointer-events: auto;
+}
+
+#visitor-counter-sign::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border: 1px solid #000000;
+  /* Double border effect for that classic Japanese sign feel */
+  pointer-events: none;
+}
+
+.sign-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+#visit-count {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #000000;
+  font-variant-numeric: tabular-nums;
+}

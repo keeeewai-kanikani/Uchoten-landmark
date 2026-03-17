@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uchoten Landmark | Minimalist Personal Space</title>
+    <meta name="description" content="A quiet corner of the internet. Minimalist, elegant, and personal.">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- p5.js core CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+</head>
+
+<body>
+    <!-- LDK / Landmark Logo 
+    <div id="ldk-landmark-logo">
+        3L<span class="small-text">an</span>D<span class="small-text">mar</span>K
+    </div>-->
+
+    <div id="app-container">
+        <!-- Generative Floor Plan Header -->
+        <div id="canvas-container" class="reveal"></div>
+
+        <!-- Header -->
+        <header class="reveal">
+            <h1 id="site-title">Uchoooten Landmark</h1>
+            <p class="intro-desc" id="site-introduction"></p>
+        </header>
+
+        <!-- About / Focus -->
+        <section id="about" class="reveal">
+            <h2>Landmark Purpose</h2>
+            <p id="about-content" style="color: var(--text-secondary); margin-bottom: 2rem;">
+                youname_Kani_xxxx offical site. I aim to engineer everything. This is where those attempts intersect.
+            </p>
+            <h2>Origin of the name</h2>
+            <p id="about-content" style="color: var(--text-secondary); margin-bottom: 2rem;">
+                Uchoten, or "有頂天" in Japanese, is a slang term derived from Buddhist terminology that expresses
+                extremely strong joy. <br>
+                Also, I designated it as a landmark because it represents the base of my
+                activities.
+            </p>
+        </section>
+
+        <!-- Projects / Links -->
+        <section id="projects" class="reveal">
+            <h2>Landmark Projects</h2>
+            <div class="link-list">
+                <a href="#" class="card" id="proj-card-1">
+                    <div>
+                        <span class="card-title">Project Alpha</span>
+                        <span class="card-info">随時追加</span>
+                    </div>
+                    <span class="arrow-icon">→</span>
+                </a>
+                <a href="#" class="card" id="proj-card-2">
+                    <div>
+                        <span class="card-title">Landmark Lab Living Room</span>
+                        <span class="card-info">随時追加</span>
+                    </div>
+                    <span class="arrow-icon">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Writing / Thoughts -->
+        <section id="writing" class="reveal">
+            <h2>Thoughts</h2>
+            <div class="link-list">
+                <a href="#" class="card" id="note-card-1">
+                    <div>
+                        <span class="card-title">個人サイト、始動。</span>
+                        <span class="card-info">2026-03-17 / start make web site</span>
+                    </div>
+                    <span class="arrow-icon">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="reveal">
+            <p>&copy; 2026 Uchoten Landmark.</p>
+            <div class="social-links">
+                <a href="https://github.com/keeeewai-kanikani" id="link-github">GitHub</a>
+                <a href="https://x.com/younameKaniKani" id="link-twitter">X</a>
+                <a href="#" id="link-email">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sketch.js"></script>
+
+    <!-- Overlays -->
+    <div id="hand-container"></div>
+
+    <!-- Visitor Counter (Real Estate Sign Style) -->
+    <div id="visitor-counter-sign" class="reveal">
+        <div class="sign-inner">
+            <span class="sign-label">物件訪問者数：</span>
+            <span id="visit-count">---</span>
+        </div>
+    </div>
+</body>
+
+</html>

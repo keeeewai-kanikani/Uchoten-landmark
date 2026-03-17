@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="心臓設計図.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.73940797"
+     inkscape:cx="396.93919"
+     inkscape:cy="561.93606"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="0.13229166"
+       spacingy="0.13229167"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="M 52.916667,105.83333 H 79.375 V 47.625 H 37.041667 v 58.20833 z"
+       style="fill:#ffffff;fill-opacity:0.791606;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path16"
+       inkscape:label="room" />
+    <path
+       d="M 111.125,179.91667 V 105.83333 H 95.25 79.375 52.916667 v 74.08334 z"
+       style="fill:#ffffff;fill-opacity:0.791606;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path15"
+       inkscape:label="room" />
+    <path
+       d="M 79.375,15.875 V 31.75 47.625 89.958333 H 95.25 V 31.75 h 47.625 V 15.875 H 95.25 Z"
+       style="fill:#b65858;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path28"
+       inkscape:label="Stairs" />
+    <path
+       d="m 95.25,31.75 v 74.08333 h 15.875 V 89.958333 68.791667 47.625 H 127 h 15.875 63.5 V 31.75 h -63.5 -31.75 z"
+       style="fill:#5ab658;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path11"
+       inkscape:label="Stairs" />
+    <path
+       d="M 142.875,47.625 H 127 v 21.166667 h 15.875 z"
+       style="fill:#5882b6;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path12"
+       inkscape:label="Stairs" />
+    <path
+       d="m 142.875,68.791667 h -31.75 v 21.166666 h 63.5 V 68.791667 Z"
+       style="fill:#ffffff;fill-opacity:0.791606;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path13"
+       inkscape:label="room" />
+    <path
+       d="m 174.625,89.958333 h -63.5 V 211.66667 H 190.5 V 89.958333 Z"
+       style="fill:#ffffff;fill-opacity:0.791606;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path14"
+       inkscape:label="room" />
+    <path
+       d="M 29.553891,47.617728 H 63.321456 V 31.757272 H 0.00727192 v 15.860456 z"
+       style="fill:#b6af58;fill-opacity:1;stroke:#4e501d;stroke-width:0.357084;paint-order:fill markers stroke"
+       id="path17"
+       inkscape:label="Stairs" />
+    <rect
+       style="fill:#5882b6;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect17"
+       width="15.875"
+       height="68.791664"
+       x="127"
+       y="211.66666"
+       inkscape:label="Stairs" />
+    <rect
+       style="fill:#5882b6;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect18"
+       width="15.875"
+       height="47.625"
+       x="63.5"
+       y="0"
+       inkscape:label="Stairs" />
+    <rect
+       style="fill:#b65858;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect19"
+       width="15.875"
+       height="100.54166"
+       x="63.5"
+       y="179.91667"
+       inkscape:label="Stairs" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect20"
+       width="15.875"
+       height="5.2916665"
+       x="127"
+       y="68.791664"
+       inkscape:label="door" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect21"
+       width="15.875"
+       height="5.2916665"
+       x="142.875"
+       y="89.958336"
+       inkscape:label="door" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect22"
+       width="15.875"
+       height="5.2916665"
+       x="63.5"
+       y="47.625"
+       inkscape:label="door" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect23"
+       width="15.875"
+       height="5.2916665"
+       x="63.5"
+       y="105.83333"
+       inkscape:label="door" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect24"
+       width="15.875"
+       height="5.2916665"
+       x="95.25"
+       y="100.54166"
+       inkscape:label="door" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect25"
+       width="21.166662"
+       height="26.458334"
+       x="111.125"
+       y="89.958336"
+       inkscape:label="door" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect26"
+       width="5.2916665"
+       height="15.875001"
+       x="127"
+       y="95.25"
+       inkscape:label="door" />
+    <path
+       d="M 95.25,89.958333 H 79.375 V 105.83333 H 95.25 Z"
+       style="fill:#ec17ff;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="path27"
+       inkscape:label="Stairs" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect28"
+       width="15.875"
+       height="5.2916665"
+       x="84.666664"
+       y="10.583333" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect29"
+       width="15.875"
+       height="5.2916665"
+       x="105.83333"
+       y="10.583333" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#4e501d;stroke-width:0.4;paint-order:fill markers stroke"
+       id="rect30"
+       width="10.583333"
+       height="5.2916665"
+       x="127"
+       y="10.583333" />
+  </g>
+</svg>
