@@ -27,9 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initVisitorCounter() {
         const countEl = document.getElementById('visit-count');
         try {
-            // Using a simple public counter API (counterapi.dev)
-            // Namespace: uchoten_landmark (using underscore for compatibility)
-            const response = await fetch('https://api.counterapi.dev/v1/uchoten_landmark/up');
+            // Using a different public counter API (countapi.xyz) to resolve CORS issues
+            const response = await fetch('https://api.countapi.xyz/hit/uchoten-landmark/visits');
             const data = await response.json();
             if (data && data.value) {
                 countEl.textContent = data.value.toLocaleString();

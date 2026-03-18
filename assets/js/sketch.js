@@ -68,73 +68,100 @@ const blueprintSk = (p) => {
     }
 
     drawGrid(p);
-    const SS = (val) => val * GU; // --- 1. DYNAMIC RELATIVE LAYOUT ( Sticky Linkage ) ---
+    const SS = (val) => val * GU;
 
-    // ROOM 0: 右心房 (Anchor - Responsive)
-    let s0 = roomHoverScales[0], l0 = layerStates[0];
-    let vw0 = (SS(roomsData[0].w) + l0) * s0;
-    let vh0 = (SS(roomsData[0].h) + l0) * s0;
-    let rx0 = CX(0);
-    let ry0 = TY(8) + vh0 / 2;
-    cr[0] = { x: rx0 - SS(11), y: ry0, vw: vw0, vh: vh0 };
+    // --- 1. DYNAMIC RELATIVE LAYOUT ( Sticky Linkage ) ---
+    const getLayout = (scales, pulses) => {
+      let outCr = [];
 
-    // ROOM 1: 右心室 (Sticks to Right Atrium Bottom)
-    let s1 = roomHoverScales[1], l1 = layerStates[1];
-    let vw1 = (SS(roomsData[1].w) + l1) * s1;
-    let vh1 = (SS(roomsData[1].h) + l1) * s1;
-    let rx1 = cr[0].x + (SS(1.5) * s0);
-    let ry1 = cr[0].y + cr[0].vh / 2 + vh1 / 2;
-    cr[1] = { x: rx1, y: ry1, vw: vw1, vh: vh1 };
+      // ROOM 0: 右心房 (Anchor - Responsive)
+      let s0 = scales[0], l0 = pulses[0];
+      let vw0 = (SS(roomsData[0].w) + l0) * s0;
+      let vh0 = (SS(roomsData[0].h) + l0) * s0;
+      let rx0 = CX(0);
+      let ry0 = TY(8) + vh0 / 2;
+      outCr[0] = { x: rx0 - SS(11), y: ry0, vw: vw0, vh: vh0 };
 
-    // ROOM 2: 左心房 (Sticks Right relative to Right Atrium)
-    let s2 = roomHoverScales[2], l2 = layerStates[2];
-    let vw2 = (SS(roomsData[2].w) + l2) * s2;
-    let vh2 = (SS(roomsData[2].h) + l2) * s2;
-    let rx2 = cr[0].x + cr[0].vw / 2 + (SS(4) * s0) + vw2 / 2;
-    let ry2 = cr[0].y + (SS(0.25) * s0);
-    cr[2] = { x: rx2, y: ry2, vw: vw2, vh: vh2 };
+      // ROOM 1: 右心室 (Sticks to Right Atrium Bottom)
+      let s1 = scales[1], l1 = pulses[1];
+      let vw1 = (SS(roomsData[1].w) + l1) * s1;
+      let vh1 = (SS(roomsData[1].h) + l1) * s1;
+      let rx1 = outCr[0].x + (SS(1.5) * s0);
+      let ry1 = outCr[0].y + outCr[0].vh / 2 + vh1 / 2;
+      outCr[1] = { x: rx1, y: ry1, vw: vw1, vh: vh1 };
 
-    // ROOM 3: 左心室 (Sticks to Left Atrium Bottom)
-    let s3 = roomHoverScales[3], l3 = layerStates[3];
-    let vw3 = (SS(roomsData[3].w) + l3) * s3;
-    let vh3 = (SS(roomsData[3].h) + l3) * s3;
-    let rx3 = cr[2].x + (SS(1.75) * s2);
-    let ry3 = cr[2].y + cr[2].vh / 2 + vh3 / 2;
-    cr[3] = { x: rx3, y: ry3, vw: vw3, vh: vh3 };
+      // ROOM 2: 左心房 (Sticks Right relative to Right Atrium)
+      let s2 = scales[2], l2 = pulses[2];
+      let vw2 = (SS(roomsData[2].w) + l2) * s2;
+      let vh2 = (SS(roomsData[2].h) + l2) * s2;
+      let rx2 = outCr[0].x + outCr[0].vw / 2 + (SS(4) * s0) + vw2 / 2;
+      let ry2 = outCr[0].y + (SS(0.25) * s0);
+      outCr[2] = { x: rx2, y: ry2, vw: vw2, vh: vh2 };
 
-    // --- 1.5 DEFINING ANCHOR NODES (Unified Hierarchy) ---
-    // These points strictly link rooms, stairs, and doors
-    const anchors = {
-      ra_door_main: { x: cr[0].x - (SS(0.75) * s0), y: cr[0].y - cr[0].vh / 2 },
-      ra_stair_left_a: { x: cr[0].x - cr[0].vw / 2 + (SS(2.5) * s0), y: cr[0].y - (SS(4.5) * s0) },
-      ra_stair_left_b: { x: cr[0].x - cr[0].vw / 2 + (SS(6.5) * s0), y: cr[0].y - (SS(4.5) * s0) },
-      ra_stair_left_c: { x: cr[0].x - cr[0].vw / 2 + (SS(4.5) * s0), y: cr[0].y - (SS(4.5) * s0) },
-      ra_entry_top: { x: cr[0].x + (SS(1.25) * s0), y: TY(0) },
-      ra_entry_room: { x: cr[0].x + (SS(1.25) * s0), y: cr[0].y - cr[0].vh / 2 },
+      // ROOM 3: 左心室 (Sticks to Left Atrium Bottom)
+      let s3 = scales[3], l3 = pulses[3];
+      let vw3 = (SS(roomsData[3].w) + l3) * s3;
+      let vh3 = (SS(roomsData[3].h) + l3) * s3;
+      let rx3 = outCr[2].x + (SS(1.75) * s2);
+      let ry3 = outCr[2].y + outCr[2].vh / 2 + vh3 / 2;
+      outCr[3] = { x: rx3, y: ry3, vw: vw3, vh: vh3 };
 
-      rv_door_entry: { x: cr[1].x - (SS(1.0) * s1), y: cr[1].y - cr[1].vh / 2 },
-      rv_door_exit: { x: cr[1].x + (SS(5.5) * s1), y: cr[1].y - cr[1].vh / 2 },
-      rv_exit_path: { x: cr[0].x + (SS(1.25) * s0), y: cr[1].y + cr[1].vh / 2 },
+      const anc = {
+        ra_door_main: { x: outCr[0].x - (SS(0.75) * s0), y: outCr[0].y - outCr[0].vh / 2 },
+        ra_stair_left_a: { x: outCr[0].x - outCr[0].vw / 2 + (SS(2.5) * s0), y: outCr[0].y - (SS(4.5) * s0) },
+        ra_stair_left_b: { x: outCr[0].x - outCr[0].vw / 2 + (SS(6.5) * s0), y: outCr[0].y - (SS(4.5) * s0) },
+        ra_stair_left_c: { x: outCr[0].x - outCr[0].vw / 2 + (SS(4.5) * s0), y: outCr[0].y - (SS(4.5) * s0) },
+        ra_entry_top: { x: outCr[0].x + (SS(1.25) * s0), y: TY(0) },
+        ra_entry_room: { x: outCr[0].x + (SS(1.25) * s0), y: outCr[0].y - outCr[0].vh / 2 },
 
-      la_door_main: { x: cr[2].x - cr[2].vw / 2 + (SS(4) * s2), y: cr[2].y + (SS(1.5) * s2) },
-      la_bridge_start: { x: cr[0].x + cr[0].vw / 2 + (SS(4.5) * s0), y: cr[1].y - cr[1].vh / 2 },
-      la_bridge_edge: { x: cr[0].x + cr[0].vw / 2, y: cr[1].y - cr[1].vh / 2 },
-      la_bridge_inner: { x: cr[0].x + cr[0].vw / 2, y: cr[0].y - (SS(8.5) * s0) },
-      la_bridge_turn: { x: cr[0].x + cr[0].vw / 2 + (SS(10) * s0), y: cr[0].y - (SS(8.5) * s0) },
-      la_bridge_end: { x: cr[0].x + cr[0].vw / 2 + (SS(10) * s0), y: cr[0].y - (SS(6.5) * s0) },
+        rv_door_entry: { x: outCr[1].x - (SS(1.0) * s1), y: outCr[1].y - outCr[1].vh / 2 },
+        rv_door_exit: { x: outCr[1].x + (SS(5.5) * s1), y: outCr[1].y - outCr[1].vh / 2 },
+        rv_exit_path: { x: outCr[0].x + (SS(1.25) * s0), y: outCr[1].y + outCr[1].vh / 2 },
 
-      lv_door_main: { x: cr[3].x - cr[3].vw / 2, y: cr[3].y - (SS(6.75) * s3) },
-      lv_output_top: { x: cr[0].x + cr[0].vw / 2 + (SS(10) * s0), y: cr[0].y - cr[0].vh / 2 },
-      lv_output_bottom: { x: cr[0].x + cr[0].vw / 2 + (SS(10) * s0), y: cr[3].y + cr[3].vh / 2 },
+        la_door_main: { x: outCr[3].x - outCr[3].vw / 2 + (SS(4) * s2), y: outCr[2].y + (SS(1.5) * s2) },
+        la_bridge_start: { x: outCr[3].x - outCr[3].vw / 2 + (SS(0) * s0), y: outCr[1].y - outCr[1].vh / 2 },
+        la_bridge_edge: { x: outCr[0].x + outCr[0].vw / 2, y: outCr[1].y - outCr[1].vh / 2 },
+        la_bridge_inner: { x: outCr[0].x + outCr[0].vw / 2, y: outCr[0].y - (SS(8.5) * s0) },
+        la_bridge_turn: { x: outCr[0].x + outCr[0].vw / 2 + (SS(10) * s0), y: outCr[0].y - (SS(8.5) * s0) },
+        la_bridge_end: { x: outCr[0].x + outCr[0].vw / 2 + (SS(10) * s0), y: outCr[0].y - (SS(6.5) * s0) },
 
-      side_path_start: { x: cr[0].x + cr[0].vw / 2 + (SS(2) * s0), y: cr[1].y - cr[1].vh / 2 - (SS(2) * s1) },
-      side_path_node: { x: cr[0].x + cr[0].vw / 2 + (SS(2) * s0), y: cr[0].y - (SS(6.5) * s0) },
+        lv_door_main: { x: outCr[3].x - outCr[3].vw / 2, y: outCr[3].y - (SS(6.75) * s3) },
+        lv_output_top: { x: outCr[0].x + outCr[0].vw / 2 + (SS(10) * s0), y: outCr[0].y - outCr[0].vh / 2 },
+        lv_output_bottom: { x: outCr[0].x + outCr[0].vw / 2 + (SS(10) * s0), y: outCr[3].y + outCr[3].vh / 2 },
 
-      header_door_0: { x: CX(0) - SS(5), y: SS(4) },
-      header_door_1: { x: CX(0) - SS(2), y: SS(4) },
-      header_door_2: { x: CX(0) + SS(1), y: SS(4) },
-      header_door_3: { x: cr[2].x + cr[2].vw / 2 - (SS(5.5) * s0), y: cr[2].y - (SS(1.5) * s0) }
+        side_path_start: { x: outCr[0].x + outCr[0].vw / 2 + (SS(2) * s0), y: outCr[1].y - outCr[1].vh / 2 - (SS(2) * s1) },
+        side_path_node: { x: outCr[0].x + outCr[0].vw / 2 + (SS(2) * s0), y: outCr[0].y - (SS(6.5) * s0) },
+
+        header_door_0: { x: CX(0) - SS(5), y: SS(4) },
+        header_door_1: { x: CX(0) - SS(2), y: SS(4) },
+        header_door_2: { x: CX(0) + SS(1), y: SS(4) },
+        header_door_3: { x: outCr[2].x + outCr[2].vw / 2 - (SS(5.5) * s0), y: outCr[2].y - (SS(1.5) * s0) }
+      };
+      return { cr: outCr, anchors: anc };
     };
+
+    // Calculate Current vs Baseline for Global Shift
+    let current = getLayout(roomHoverScales, layerStates);
+    let baseline = getLayout([1, 1, 1, 1], [0, 0, 0, 0, 0, 0]);
+
+    // Find primary hover index
+    let hoverIdx = -1, maxH = 1.05;
+    roomHoverScales.forEach((s, i) => { if (s > maxH) { hoverIdx = i; maxH = s; } });
+
+    // Apply Global Shift to stick hovered room's center to its rest position
+    if (hoverIdx !== -1) {
+      let dx = baseline.cr[hoverIdx].x - current.cr[hoverIdx].x;
+      let dy = baseline.cr[hoverIdx].y - current.cr[hoverIdx].y;
+      current.cr.forEach(rect => { rect.x += dx; rect.y += dy; });
+      for (let key in current.anchors) {
+        current.anchors[key].x += dx;
+        current.anchors[key].y += dy;
+      }
+    }
+
+    let anchors = current.anchors;
+    cr = current.cr;
+    let l0 = layerStates[0], l1 = layerStates[1], l2 = layerStates[2], l3 = layerStates[3];
 
     // --- 2. DRAW ROOMS ---
     cr.forEach((rect, i) => {
@@ -173,15 +200,15 @@ const blueprintSk = (p) => {
     drawDoor(p, anchors.ra_door_main.x, anchors.ra_door_main.y, SS(4.0), 0 / 2, l0);
     drawDoor(p, anchors.rv_door_entry.x, anchors.rv_door_entry.y, SS(4.0), 0 / 2, l1);
     drawDoor(p, anchors.rv_door_exit.x, anchors.rv_door_exit.y, SS(4.0), Math.PI, l1, -1);
-    drawDoor(p, anchors.la_door_main.x, anchors.la_door_main.y, SS(4.0), 0, l2);
-    drawDoor(p, anchors.lv_door_main.x, anchors.lv_door_main.y, SS(4.0), -Math.PI / 2, l3);
+    drawDoor(p, anchors.la_door_main.x, cr[3].y - cr[3].vh / 2, SS(4.0), 0, l2);
+    drawDoor(p, anchors.lv_door_main.x, anchors.la_bridge_start.y, SS(4.0), -Math.PI / 2, l3);
 
 
     drawDoor(p, anchors.la_bridge_inner.x + SS(3), anchors.la_bridge_inner.y, SS(4.0), Math.PI, l1);
     drawDoor(p, anchors.la_bridge_inner.x + SS(6), anchors.la_bridge_inner.y, SS(4.0), Math.PI, l2);
     drawDoor(p, anchors.la_bridge_inner.x + SS(9), anchors.la_bridge_inner.y, SS(4.0), Math.PI, l3);
 
-    drawDoor(p, anchors.header_door_3.x, anchors.header_door_3.y, SS(4.0), 0, l0);
+    drawDoor(p, anchors.la_bridge_end.x - SS(2), cr[2].y - cr[2].vh / 2, SS(4.0), 0, l0);
 
 
 
