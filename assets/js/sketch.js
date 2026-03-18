@@ -1,7 +1,7 @@
 // --- Heartbeat Logic ---
 let angle = 0;
 let layerStates = [0, 0, 0, 0, 0, 0];
-const GU = 20; // Reverted to 20px grid to match site background
+let GU = 20; // Changed to let to allow responsive scaling
 const OX = 300, OY = 80;
 
 // --- Hand States ---
@@ -36,6 +36,9 @@ const blueprintSk = (p) => {
   const BY = (v) => p.height - v * GU;   // Bottom Y
 
   p.draw = () => {
+    // Dynamic scaling based on window width
+    GU = p.map(p.constrain(p.width, 375, 1200), 375, 1200, 10, 22);
+
     p.clear();
     // --- 修正後：ガウス関数によるQRS波の近似と恒常性のベース ---
 
@@ -326,7 +329,8 @@ function drawRoom(p, x, y, w, h, pulse, name, hoverScale) {
   p.text(name, 0, -10);
 
   // Jo Count
-  let areaM2 = (w / 45) * (h / 45);
+  let metroScale = GU * 2.25;
+  let areaM2 = (w / metroScale) * (h / metroScale);
   let jo = (areaM2 / 1.62).toFixed(1);
   p.textSize(15);
   p.text(jo + "帖", 0, 10);
@@ -353,8 +357,9 @@ function drawDoor(p, x, y, size, baseAngle, pulse, dir = 1) {
 }
 
 function drawMouseGuides(p, w, h, cx, cy) {
-  let mX = p.mouseX / 45;
-  let mY = p.mouseY / 45;
+  let metroScale = GU * 2.25;
+  let mX = p.mouseX / metroScale;
+  let mY = p.mouseY / metroScale;
   p.fill(42, 82, 190, 200);
   p.noStroke();
   p.textSize(9);
@@ -371,8 +376,8 @@ function drawMouseGuides(p, w, h, cx, cy) {
 
 function drawGrid(p) {
   p.stroke(42, 82, 190, 30);
-  for (let i = 0; i < p.width; i += 20) p.line(i, 0, i, p.height);
-  for (let j = 0; j < p.height; j += 20) p.line(0, j, p.width, j);
+  for (let i = 0; i < p.width; i += GU) p.line(i, 0, i, p.height);
+  for (let j = 0; j < p.height; j += GU) p.line(0, j, p.width, j);
   p.fill(42, 82, 190, 120);
   p.noStroke();
   p.textSize(14);
@@ -383,7 +388,7 @@ function drawGrid(p) {
 
 function drawStairs(p, vertices, thickness, direction) {
   if (vertices.length < 2) return;
-  let stepGap = 12;
+  let stepGap = thickness / 3;
   let speed = 0.8;
   let flowSegments = [];
   let totalFlowLength = 0;
