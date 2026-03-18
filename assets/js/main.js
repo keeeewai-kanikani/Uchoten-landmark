@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initVisitorCounter() {
         const countEl = document.getElementById('visit-count');
         try {
-            // Using a different public counter API (countapi.xyz) to resolve CORS issues
-            const response = await fetch('https://api.countapi.xyz/hit/uchoten-landmark/visits');
+            // Using a different public counter API (counterapi.dev) to resolve CORS issues
+            const response = await fetch('https://api.counterapi.dev/v1/uchoten-landmark/visits/up');
             const data = await response.json();
-            if (data && data.value) {
-                countEl.textContent = data.value.toLocaleString();
+            if (data && data.count) {
+                countEl.textContent = data.count.toLocaleString();
             }
         } catch (error) {
             console.warn('Visitor counter failed to load:', error);
